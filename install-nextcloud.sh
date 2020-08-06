@@ -45,13 +45,16 @@ if [ ! -e $FLAGS_DIR/install-nextcloud-prerequisites ]; then
 fi
 
 
-echo "pausing here"
-exit 0
-
 # downloads NextCloud
 
 NEXTCLOUD_URL=https://download.nextcloud.com/server/releases/nextcloud-19.0.1.tar.bz2
 NEXTCLOUD_ARCHIVE=/home/$USER/Programs/$(wcho $NEXCLOUD_URL | rev | tr '/' ' ' | awk '{print $1}' | rev)
-wget -O $NEXTCLOUD_ARCHIVE $NEXCLOUD_URL
+if [ ! -e $NEXTCLOUD_ARCHIVE ]; then
+	wget -O $NEXTCLOUD_ARCHIVE $NEXCLOUD_URL
+fi
 
-sudo tar -xvf $NEXTCLOUD_ARCHIVE -C /var/www
+APACHE_DOCUMENT_ROOT=$(grep -i 'DocumentRoot' /etc/apache2/sites-available/000-default.conf | awk '{print $2}')
+
+echo "extracting $NEXTCLOUD_ARCHIVE to $APACHE_DOCUMENT_ROOT"
+sudo tar -xvf $NEXTCLOUD_ARCHIVE -C $APACHE_DOCUMENT_ROOT
+echo "extracted $NEXTCLOUD_ARCHIVE to $APACHE_DOCUMENT_ROOT"
