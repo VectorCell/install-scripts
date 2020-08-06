@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+echo
 echo "You are about to install NextCloud on $HOSTNAME"
 while true; do
 read -p "Are you sure you wish to continue? [y/n]:" yn
@@ -32,11 +33,11 @@ if [ ! -e $FLAGS_DIR/install-nextcloud-prerequisites ]; then
 	echo "Once the prompt appears, enter the following commands,"
 	echo "replacing username and password with appropriate values:"
 	echo
-	echo CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
-	echo CREATE DATABASE IF NOT EXISTS nextcloud CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-	echo GRANT ALL PRIVILEGES ON nextcloud.* TO 'username'@'localhost';
-	echo FLUSH PRIVILEGES;
-	echo quit;
+	echo "CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';"
+	echo "CREATE DATABASE IF NOT EXISTS nextcloud CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
+	echo "GRANT ALL PRIVILEGES ON nextcloud.* TO 'username'@'localhost';"
+	echo "FLUSH PRIVILEGES;"
+	echo "quit;"
 	echo
 	sudo mysql -uroot -p
 
