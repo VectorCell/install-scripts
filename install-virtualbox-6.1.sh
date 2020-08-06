@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CODENAME=$(lsb_release -c | awk 'print $2')
+CODENAME=$(lsb_release -c | awk '{print $2}')
 if [ -z "$CODENAME" ]; then
 	echo "ERROR: unable to get Debian or Ubuntu codename"
 	exit 1
