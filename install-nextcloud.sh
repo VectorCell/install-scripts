@@ -67,4 +67,8 @@ if [ ! -d $NEXTCLOUD_DIR ]; then
 	sudo chown -R www-data:www-data $NEXTCLOUD_DIR
 fi
 
+echo "restarting apache ..."
+sudo systemctl restart apache2
+
+echo
 echo "nextcloud installed in $NEXTCLOUD_DIR"
