@@ -45,19 +45,24 @@ if [ ! -e $FLAGS_DIR/install-nextcloud-prerequisites ]; then
 fi
 
 
-# downloads NextCloud
-
-NEXTCLOUD_URL=https://download.nextcloud.com/server/releases/nextcloud-19.0.1.tar.bz2
-NEXTCLOUD_ARCHIVE=/home/$USER/Programs/$(echo $NEXTCLOUD_URL | rev | tr '/' ' ' | awk '{print $1}' | rev)
-echo
-echo "checking for $NEXTCLOUD_ARCHIVE"
-if [ ! -e $NEXTCLOUD_ARCHIVE ]; then
-	wget -O $NEXTCLOUD_ARCHIVE $NEXTCLOUD_URL
-fi
+# downloads and installs NextCloud
 
 APACHE_DOCUMENT_ROOT=$(grep -i 'DocumentRoot' /etc/apache2/sites-available/000-default.conf | awk '{print $2}')
+NEXTCLOUD_DIR=$APACHE_DOCUMENT_ROOT/nextcloud
+if [ ! -d $NEXTCLOUD_DIR ]; then
 
-echo
-echo "extracting $NEXTCLOUD_ARCHIVE to $APACHE_DOCUMENT_ROOT"
-sudo tar -xvf $NEXTCLOUD_ARCHIVE -C $APACHE_DOCUMENT_ROOT
-echo "extracted $NEXTCLOUD_ARCHIVE to $APACHE_DOCUMENT_ROOT"
+	NEXTCLOUD_URL=https://download.nextcloud.com/server/releases/nextcloud-19.0.1.tar.bz2
+	NEXTCLOUD_ARCHIVE=/home/$USER/Programs/$(echo $NEXTCLOUD_URL | rev | tr '/' ' ' | awk '{print $1}' | rev)
+	echo
+	echo "checking for $NEXTCLOUD_ARCHIVE"
+	if [ ! -e $NEXTCLOUD_ARCHIVE ]; then
+		wget -O $NEXTCLOUD_ARCHIVE $NEXTCLOUD_URL
+	fi
+
+	echo
+	echo "extracting $NEXTCLOUD_ARCHIVE to $APACHE_DOCUMENT_ROOT"
+	sudo tar -xvf $NEXTCLOUD_ARCHIVE -C $APACHE_DOCUMENT_ROOT
+	echo "extracted $NEXTCLOUD_ARCHIVE to $APACHE_DOCUMENT_ROOT"
+fi
+
+echo "nextcloud installed in $NEXTCLOUD_DIR"
