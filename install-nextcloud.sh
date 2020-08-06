@@ -63,6 +63,8 @@ if [ ! -d $NEXTCLOUD_DIR ]; then
 	echo "extracting $NEXTCLOUD_ARCHIVE to $APACHE_DOCUMENT_ROOT"
 	sudo tar -xvf $NEXTCLOUD_ARCHIVE -C $APACHE_DOCUMENT_ROOT
 	echo "extracted $NEXTCLOUD_ARCHIVE to $APACHE_DOCUMENT_ROOT"
+
+	sudo chown -R www-data:www-data $NEXTCLOUD_DIR
 fi
 
 echo "nextcloud installed in $NEXTCLOUD_DIR"
