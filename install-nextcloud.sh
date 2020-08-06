@@ -48,9 +48,9 @@ fi
 # downloads NextCloud
 
 NEXTCLOUD_URL=https://download.nextcloud.com/server/releases/nextcloud-19.0.1.tar.bz2
-NEXTCLOUD_ARCHIVE=/home/$USER/Programs/$(wcho $NEXCLOUD_URL | rev | tr '/' ' ' | awk '{print $1}' | rev)
+NEXTCLOUD_ARCHIVE=/home/$USER/Programs/$(echo $NEXCLOUD_URL | rev | tr '/' ' ' | awk '{print $1}' | rev)
 if [ ! -e $NEXTCLOUD_ARCHIVE ]; then
-	wget -O $NEXTCLOUD_ARCHIVE $NEXCLOUD_URL
+	wget -O $NEXTCLOUD_ARCHIVE $NEXTCLOUD_URL
 fi
 
 APACHE_DOCUMENT_ROOT=$(grep -i 'DocumentRoot' /etc/apache2/sites-available/000-default.conf | awk '{print $2}')
