@@ -48,7 +48,7 @@ fi
 # downloads NextCloud
 
 NEXTCLOUD_URL=https://download.nextcloud.com/server/releases/nextcloud-19.0.1.tar.bz2
-NEXTCLOUD_ARCHIVE=/home/$USER/Programs/$(echo $NEXCLOUD_URL | rev | tr '/' ' ' | awk '{print $1}' | rev)
+NEXTCLOUD_ARCHIVE=/home/$USER/Programs/$(echo $NEXTCLOUD_URL | rev | tr '/' ' ' | awk '{print $1}' | rev)
 echo "checking for $NEXTCLOUD_ARCHIVE"
 if [ ! -e $NEXTCLOUD_ARCHIVE ]; then
 	wget -O $NEXTCLOUD_ARCHIVE $NEXTCLOUD_URL
