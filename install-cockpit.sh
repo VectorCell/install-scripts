@@ -9,6 +9,8 @@ fi
 if [ -n "$(command -v samba)" ]; then
 	sudo sh -c 'echo "$(logname) ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/cockpit-smb'
 	wget -O - https://raw.githubusercontent.com/enira/cockpit-smb-plugin/master/install.sh | sudo bash
+else
+	echo "Samba not found. Skipping Samba plugin installation."
 fi
 
 (
