@@ -15,7 +15,7 @@ fi
 
 (
 echo "[WebService]"
-echo "Origins = https://apt.bismith.net wss://apt.bismith.net"
+echo "Origins = https://vpn.bismith.net wss://vpn.bismith.net"
 echo "ProtocolHeader = X-Forwarded-Proto"
 echo "UrlRoot=/$HOSTNAME"
 ) | sudo tee /etc/cockpit/cockpit.conf
