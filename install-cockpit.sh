@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt update && sudo apt install -y cockpit
-if [ $? ]; then
+if [ "$?" != "0" ]; then
 	1>&2 echo "ERROR: unable to install cockpit"
 	exit 1
 fi
